@@ -1,5 +1,5 @@
 # Summary
-Code Challenge for Bermi Back End Engineer Position via codefor.cash
+[Code Challenge](http://codefor.cash/bermi) for Bermi Back End Engineer Position via codefor.cash
 
 # Demo
 [Web UI](https://flask-rss-reader--teknorah.repl.co/)
