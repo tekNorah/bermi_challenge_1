@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, jsonify, abort, make_response
 
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
-from rss_feed import get_sorted_posts, get_posts, get_single_blog, get_subscriptions, nest_subs
+from rss_feed import get_sorted_posts, get_posts, get_single_blog, get_subscriptions, nest_subs, get_all_entries
 
 # set up base directory
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -52,6 +52,11 @@ def get_subs():
     subs = nest_subs(get_subscriptions())
     return jsonify({'subscriptions': subs})
 
+@app.route('/api/v1.0/subscriptions/all', methods=['GET'])
+def get_all_subs():
+    subs = get_all_entries()
+    return jsonify({'subscriptions': subs})
+
 @app.route('/api/v1.0/subscriptions/<int:sub_id>', methods=['GET'])
 def get_sub(sub_id):
     subs = nest_subs(get_subscriptions())
@@ -66,7 +71,6 @@ def get_sub_entries(sub_id):
     sub = [sub for sub in subs if sub['id'] == sub_id]
     if len(sub) == 0:
         abort(400)
-    print(sub[0]['url'])
     sub_entries, sub_titles = get_single_blog(sub[0]['url'])
     return jsonify({'subscription': sub[0]},{'entries': sub_entries})
 

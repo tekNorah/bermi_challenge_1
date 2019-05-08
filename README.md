@@ -11,7 +11,7 @@ Pages:
 # API
 Base URL: https://flask-rss-reader--teknorah.repl.co/api/v1.0/subscriptions
  - {Base_url} - List of Subscriptions
- - {Base_url}/today - Entries
+ - {Base_url}/all - List of All Subscriptions with their Entries
  - {Base_url}/{sub_id} - Single Subscription Information
  - {Base_url}/{sub_id}/entries - Single Subscription's Entries
 

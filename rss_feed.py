@@ -56,6 +56,27 @@ def get_posts():
                 posts.reverse()
     return posts
 
+def get_all_entries():
+  subs = get_subscriptions()
+
+  all_entries = []
+  number = 0
+  for title,url in subs.items():
+    number += 1
+    the_feed = fp.parse(url, request_headers={'Cache-control': 'max-age=60'})
+    single_blog_posts = the_feed['entries']
+    all_entries.append({'subscription': {'id':number,'title':title,'url':url, 'entries': single_blog_posts}})
+  return all_entries
+
+def nest_subs(subs):
+    # convert sub dict to nested dict list and add record id
+  nested_subs = []
+  number = 0
+  for title,url in subs.items():
+    number += 1
+    nested_subs.append({'id':number,'title':title,'url':url})
+  return nested_subs
+
 def get_single_blog(feed):
     '''Feed the all_posts path an individual blog/feed to parse and display from inside the template'''
     the_feed = fp.parse(feed, request_headers={'Cache-control': 'max-age=60'})
@@ -107,13 +128,3 @@ def get_sorted_posts(sorted_posts):
         litems.append(listTemplate.format(*q))
     myitems = '</br>'.join(litems)
     return myitems
-
-def nest_subs(subs):
-    # convert sub dict to nested dict list and add record id
-  nested_subs = []
-  number = 0
-  for title,url in subs.items():
-  #   print(title)
-    number += 1
-    nested_subs.append({'id':number,'title':title,'url':url})
-  return nested_subs
