@@ -1,0 +1,134 @@
+{% extends "bootstrap/base.html" %}
+
+{% set navigation_bar = [
+    ('/', 'index', 'Home'),
+    ('/subscriptions', 'subscriptions', 'Subscriptions'),
+] -%}
+
+{% set active_page = active_page|default('index') -%}
+
+{% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- CSS -->
+    <link href="{{ url_for('.static', filename = 'css/preload.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+    <link href="{{ url_for('.static', filename = 'css/vendors.css') }}" rel="stylesheet">
+    <link href="{{ url_for('.static', filename = 'css/syntaxhighlighter/shCore.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('.static', filename = 'css/style-bermi.css') }}" rel="stylesheet" title="default">
+    <link href="{{ url_for('.static', filename = 'css/width-full.css') }}" rel="stylesheet" title="default">
+    <link rel="icon" href="{{ url_for('.static', filename = 'favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('.static', filename = 'favicon.ico') }}" type="image/x-icon">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="{{ url_for('.static', filename = 'js/html5shiv.min.js') }}"></script>
+        <script src="{{ url_for('.static', filename = 'js/respond.min.js') }}"></script>
+    <![endif]-->
+{% endblock %}
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+
+{% block body %}
+    <img src="https://bermi.tv/_nuxt/img/7443aed.png" class="bg-img">
+    <div id="sb-site">
+        <div class="boxed">
+
+            <header id="header-full-top" class="hidden-xs header-full">
+                <div class="container">
+                    <div class="header-full-title">
+                        <img src="https://bermi.tv/_nuxt/img/4c2f24d.png" alt="" class="logo">
+                        <h2>Challenge 1: </h2><h1 class="animated fadeInRight"><a href="/">Flask <span>reader</span></a><h1>
+                    </div>
+                </div>
+                <!-- container -->
+            </header>
+            <!-- header-full -->
+            {% block navbar %}
+                <nav class="navbar navbar-default navbar-header-full yamm navbar-static-top"
+                     role="navigation"
+                     id="header">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                    data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle</span>
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <a id="ar-brand" class="navbar-brand hidden-lg hidden-md hidden-sm" href="/">Flask
+                                <span>Reader</span></a>
+                        </div>
+                        <!-- navbar-header -->
+
+                        <!-- Collect the nav links -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                              {% for href, id, caption in navigation_bar %}
+                                <li{% if id == active_page %} class="active"{% endif%}>
+                                  <a href="{{ href|e }}">{{ caption|e }}</a>
+                                  </li>
+                              {% endfor %}
+                                <!-- <li class="nav-item active">
+                                    <a class="nav-link" href="/">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url_for('subscriptions') }}">Subscriptions</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        <!-- navbar-collapse -->
+                    </div>
+                    <!-- container -->
+                </nav>
+
+            {% endblock %}
+            {% block my_header %}
+            {% endblock %}
+
+            {% block content %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% for message in get_flashed_messages() %}
+                                <div class="alert alert-warning">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                            {% block page_content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+            <footer id="footer">
+                <p>&copy; 2019 <a href="https://tekAura.com">Flask Reader</a> All rights reserved.</p>
+            </footer>
+        </div>
+    </div>
+    <div id="back-top">
+        <a href="#header"><i class="fa fa-chevron-up"></i></a>
+    </div>
+    {% block scripts %}
+        {{ moment.include_moment() }}
+
+        <script src="{{ url_for('.static', filename = 'js/vendors.js') }}"></script>
+        <!-- Syntaxhighlighter -->
+        <script src="{{ url_for('.static', filename = 'js/syntaxhighlighter/shCore.js') }}"></script>
+        <script src="{{ url_for('.static', filename = 'js/syntaxhighlighter/shBrushXml.js') }}"></script>
+        <script src="{{ url_for('.static', filename = 'js/syntaxhighlighter/shBrushJScript.js') }}"></script>
+
+        <script src="{{ url_for('.static', filename = 'js/DropdownHover.js') }}"></script>
+        <script src="{{ url_for('.static', filename = 'js/app.js') }}"></script>
+        <script src="{{ url_for('.static', filename = 'js/holder.js') }}"></script>
+
+    {% endblock %}
+{% endblock %}
