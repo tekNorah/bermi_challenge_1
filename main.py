@@ -12,12 +12,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 '''----------APP SETUP-------------'''
 app = Flask(__name__)
 
-# Set up Simple Cache
-#cache = Cache(app,config={'CACHE_TYPE': 'simple'})
-
-# Set secret key for csrf in WTF forms
-# app.config['SECRET_KEY'] = 'kjer9034-09uei0909KW454()%(Q#)(I)(IKJWEI'
-
 bootstrap = Bootstrap(app)
 
 # init flask moment to add simple date/time to templates
