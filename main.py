@@ -47,6 +47,14 @@ def subscriptions():
     page_title = 'All Subscriptions'
     return render_template('subs.html', subs=subs, page_title=page_title)
 
+@app.route('/api')
+def api():
+    ''' Grabs the list of subscriptions and renders them to this page'''
+    subs = nest_subs(get_subscriptions())
+    print(subs)
+    page_title = 'API Endpoints'
+    return render_template('api.html', subs=subs, page_title=page_title)
+
 @app.route('/api/v1.0/subscriptions', methods=['GET'])
 def get_subs():
     subs = nest_subs(get_subscriptions())
