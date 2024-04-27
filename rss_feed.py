@@ -8,10 +8,10 @@ import pytz
 
 
 subscriptions = [
-    'https://9gag-rss.com/api/rss/get?code=9GAGDarkHumorNoGif&format=2',
-    'https://9gag-rss.com/api/rss/get?code=9GAGFresh&format=2',
-    'https://9gag-rss.com/api/rss/get?code=9GAGDarkHumor&format=2',
-    'https://9gag-rss.com/api/rss/get?code=9GAGAwesome&format=2']
+    'https://thebloggess.com/feed/',
+    'https://uncommondiscourse.com/feed',
+    'https://www.witandspitup.com/mywit?format=RSS',
+    'https://www.woopdedo.com/feed/']
 
 # Date and time setup. I want only posts from "today,"
 # where the day lasts until 2 AM.
