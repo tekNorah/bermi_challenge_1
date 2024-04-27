@@ -2,14 +2,14 @@
 [Code Challenge](http://codefor.cash/bermi) for Bermi Back End Engineer Position via codefor.cash
 
 # Demo
-[Web UI](https://flask-rss-reader--teknorah.repl.co/)
+[Runner](https://replit.com/@tekNorah/Flask-RSS-Reader?v=1)
 Pages:
  - Home (index) - All of today's (Arizona time zone) entries from all subscriptions
  - Subscriptions - List of Subscriptions
  - Subscription Page - List of Entries for a Single Subscription
 
 # API
-Base URL: https://flask-rss-reader--teknorah.repl.co/api/v1.0/subscriptions
+Path: /api/v1.0/subscriptions
  - {Base_url} - List of Subscriptions
  - {Base_url}/all - List of All Subscriptions with their Entries
  - {Base_url}/{sub_id} - Single Subscription Information
